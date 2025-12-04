@@ -59,26 +59,57 @@ export const blogApi = {
     return data as BlogPost
   },
   
-  async likePost(postId: number) {
-    const { data: post } = await supabase
+async likePost(postId: number, userId: string) { // Лайк постов
+    if (!userId) return null;
+
+
+    const { data: existingLike} = await supabase
+      .from('post_likes')
+      .select('*')
+      .eq('post_id', postId)
+      .eq('user_id', userId)
+      .single();
+
+
+    if (existingLike) {
+
+      return null;
+    }
+
+  
+    const { error: insertError } = await supabase
+      .from('post_likes')
+      .insert([{ post_id: postId, user_id: userId }]);
+
+    if (insertError) {
+      console.error('Ошибка добавления лайка:', insertError);
+      return null;
+    }
+
+
+    const { data: post, error: postError } = await supabase
       .from('posts')
       .select('likes_count')
       .eq('id', postId)
-      .single()
-    
-    if (!post) return null
-    
-    const { data, error } = await supabase
+      .single();
+
+    if (postError || !post) {
+      console.error('Ошибка получения поста:', postError);
+      return null;
+    }
+
+    const { data: updatedPost, error: updateError } = await supabase
       .from('posts')
       .update({ likes_count: (post.likes_count || 0) + 1 })
       .eq('id', postId)
       .select()
-    
-    if (error) {
-      console.error('Error:', error)
-      return null
+      .single();
+
+    if (updateError) {
+      console.error('Ошибка обновления лайков:', updateError);
+      return null;
     }
-    
-    return data[0] as BlogPost
+
+    return updatedPost as BlogPost;
   }
 }

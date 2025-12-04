@@ -3,7 +3,10 @@
   margin: 0 auto;
   padding: 20px;
 }
-
+.div{
+  display: flex;
+  gap: 20px;
+}
 .blog-header {
   display: flex;
   justify-content: space-between;

@@ -47,42 +47,21 @@ html, body {
 }
 
 .bottom {
-    font-size: large;
     border-radius: 20px;
-    height: 40px; /* Фиксированная высота */
-    min-width: 120px; /* Минимальная ширина */
     padding: 10px 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
     text-decoration: none;
-    color: rgb(165, 212, 181);
+    color: rgb(18, 45, 27);
     background-color: rgba(255, 255, 255, 0.1); 
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    animation-name: left;
-    animation-duration: 2s;
-    animation-delay: 0.1s;
-    animation-fill-mode: both; /* Чтобы сохранилось конечное состояние */
-    transition: all 0.3s ease; /* Плавные переходы */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
 }
 
 .bottom:hover {
-    color: rgb(50, 173, 132);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(138, 229, 199, 0.366);
     transform: translateY(-2px); /* Легкий подъем при наведении */
 }
 
-@keyframes left {
-    from {
-        transform: translateX(-1000px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
 
     /* Адаптивность для мобильных */
 @media (max-width: 768px) {

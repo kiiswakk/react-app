@@ -1,5 +1,5 @@
 "use client";
-
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -264,7 +264,7 @@ if (isRegistered && currentUser) {
         {/* Форма регистрации/входа */}
         <div style={formContainerStyle}>
           <h2 style={{ textAlign: 'center', color: '#08572f', marginBottom: '20px' }}>
-            {showLogin ? '🔐 Вход в систему' : '📝 Регистрация'}
+            {showLogin ? 'Вход в систему' : 'Регистрация'}
           </h2>
           
           {showLogin ? (
@@ -309,7 +309,7 @@ if (isRegistered && currentUser) {
                 </div>
               </div>
               <button type="submit" style={submitButtonStyle}>
-                🔐 Войти
+                Войти
               </button>
               <div style={{ textAlign: 'center', marginTop: '15px' }}>
                 <button 
@@ -375,7 +375,7 @@ if (isRegistered && currentUser) {
                       color: '#666'
                     }}
                   >
-                    {showPassword ? '🙈' : '👁️'}
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
                   </button>
                 </div>
               </div>
@@ -390,7 +390,7 @@ if (isRegistered && currentUser) {
                 />
               </div>
               <button type="submit" style={submitButtonStyle}>
-                📝 Зарегистрироваться
+                Зарегистрироваться
               </button>
               <div style={{ textAlign: 'center', marginTop: '15px' }}>
                 <button 
@@ -419,11 +419,11 @@ if (isRegistered && currentUser) {
                 ...dashboardLinkStyle,
                 backgroundColor: '#4a6fa5'
               }}>
-                📝 Блог сообщества
+                Блог сообщества
               </Link>
               {currentUser && (
                 <Link href="/dashboard" style={dashboardLinkStyle}>
-                  🎉 Личный кабинет
+                  Личный кабинет
                 </Link>
               )}
             </div>
@@ -434,7 +434,7 @@ if (isRegistered && currentUser) {
 
       </main>
       <footer className="footer">
-        🔐 Кастомная система авторизации • Supabase
+        Этот сайт сделали Владос Денчик и Ваня
       </footer>
     </>
   );

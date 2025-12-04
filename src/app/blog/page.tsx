@@ -103,19 +103,23 @@ export default function BlogPage() {
   };
 
   const handleLike = async (postId: number) => {
-    try {
-      const updatedPost = await blogApi.likePost(postId);
-      if (updatedPost) {
-        setPosts(posts.map(post => 
-          post.id === postId 
-            ? { ...post, likes_count: updatedPost.likes_count }
-            : post
-        ));
-      }
-    } catch (error) {
-      console.error('Ошибка:', error);
-    }
-  };
+  const currentUser = authService.getCurrentUser();
+  const userId = currentUser?.id; 
+
+  console.log('Текущий пользователь id:', userId);
+
+  if (!userId) return;
+
+  const updatedPost = await blogApi.likePost(postId, userId);
+
+  if (updatedPost) {
+    setPosts(posts.map(post =>
+      post.id === postId ? { ...post, likes_count: updatedPost.likes_count } : post
+    ));
+  } else {
+    alert('Вы уже лайкали этот пост');
+  }
+};
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('ru-RU', {
@@ -132,12 +136,17 @@ export default function BlogPage() {
   return (
     <div className="blog-container">
       <header className="blog-header">
-        <h1>📝 Блог с тегами</h1>
+        <div className="div">
+        <Link href="/dashboard" className="bottom">
+        Личный кабинет
+        </Link>
+        <Link href="/" className="bottom">
+        На главную
+        </Link>
+        </div>
         <div className="header-right">
           <UserInfo onNameChange={handleNameChange} />
-          <Link href="/" className="back-link">
-            ← На главную
-          </Link>
+          
         </div>
       </header>
 
