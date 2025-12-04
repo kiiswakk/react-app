@@ -304,7 +304,7 @@ if (isRegistered && currentUser) {
                       color: '#666'
                     }}
                   >
-                    {showPassword ? '🙈' : '👁️'}
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
                   </button>
                 </div>
               </div>
