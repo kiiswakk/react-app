@@ -116,6 +116,7 @@
     };
 
     export const inputGroupStyle = {
+
     display: 'flex',
     flexDirection: 'column' as const
     };

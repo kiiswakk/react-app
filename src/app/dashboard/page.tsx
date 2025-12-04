@@ -109,19 +109,6 @@ export default function Dashboard() {
             }}>
               📝 Создать пост в блоге
             </Link>
-            
-            <Link href="/" style={{
-              padding: '12px 20px',
-              background: '#4a6fa5',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '5px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              👥 Список пользователей
-            </Link>
           </div>
         </div>
 

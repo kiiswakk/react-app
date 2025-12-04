@@ -92,7 +92,6 @@ export default function Home() {
 };
 
   // Регистрация
-  // Регистрация
 const handleRegister = async (e: React.FormEvent) => {
   e.preventDefault();
   
@@ -115,7 +114,7 @@ const handleRegister = async (e: React.FormEvent) => {
   console.log('Отправка регистрации...');
   const result = await authService.register(name, email, password);
   
-  // ИСПРАВЛЕННЫЙ БЛОК - result теперь просто объект пользователя
+  //объект пользователя
   if (result && result.name) {
     console.log('Регистрация успешна:', result);
     setRegisteredUser(result.name);
@@ -125,16 +124,10 @@ const handleRegister = async (e: React.FormEvent) => {
     loadUsers();
     
     alert(`Добро пожаловать, ${result.name}!`);
-    
-    // Опционально: редирект на dashboard
-    // setTimeout(() => {
-    //   router.push('/dashboard');
-    // }, 2000);
+  
   } else if (result === null) {
-    // authService вернул null (пользователь уже существует и т.д.)
     console.log('Регистрация не удалась (вернулся null)');
   } else {
-    // result undefined или без имени
     console.error('Неожиданный результат регистрации:', result);
     alert('Ошибка регистрации. Попробуйте еще раз.');
   }
@@ -172,19 +165,7 @@ const handleRegister = async (e: React.FormEvent) => {
     alert('Вы вышли из системы');
   };
 
-  // Удалить пользователя
-  const handleDeleteUser = async (userId: string) => {
-    if (confirm('Удалить пользователя?')) {
-      // Удаляем из нашей системы
-      const success = await authService.deleteAccount(userId);
-      if (success) {
-        loadUsers();
-        if (currentUser?.id === userId) {
-          setCurrentUser(null);
-        }
-      }
-    }
-  };
+
 
   const resetForm = () => {
     setName('');
@@ -195,7 +176,6 @@ const handleRegister = async (e: React.FormEvent) => {
     setLoginPassword('');
   };
 
-  // Если успешная регистрация/вход
   // Если успешная регистрация/вход
 if (isRegistered && currentUser) {
   return (
@@ -209,12 +189,6 @@ if (isRegistered && currentUser) {
               Вы успешно {showLogin ? 'вошли в систему' : 'зарегистрированы'}!
             </p>
             
-            {/* УДАЛИ ЭТИ СТРОКИ ИЛИ ЗАКОММЕНТИРУЙ:
-            <div style={redirectInfoStyle}>
-              <div style={spinnerStyle}>⏳</div>
-              <p>Перенаправление...</p>
-            </div>
-            */}
             
             <div style={linksContainerStyle}>
               <Link href="/blog" style={primaryLinkStyle}>
@@ -456,59 +430,7 @@ if (isRegistered && currentUser) {
           </div>
         </div>
 
-        {/* Список пользователей */}
-        <div style={dataContainerStyle}>
-          <h2 style={{ textAlign: 'center', color: '#08572f', marginBottom: '20px' }}>
-            Зарегистрированные пользователи ({users.length})
-          </h2>
-          
-          {isLoading ? (
-            <p style={{ textAlign: 'center', color: '#08572f' }}>Загрузка...</p>
-          ) : users.length === 0 ? (
-            <p style={{ textAlign: 'center', color: '#08572f' }}>Пока нет пользователей</p>
-          ) : (
-            <div style={usersListStyle}>
-              {users.map(user => (
-                <div key={user.id} style={userCardStyle}>
-                  <div style={userInfoStyle}>
-                    <strong style={{ color: '#08572f' }}>{user.name}</strong>
-                    <span style={{ color: '#0b311f', fontSize: '14px' }}>{user.email}</span>
-                    <small style={{ color: '#666', fontSize: '12px' }}>
-                      {new Date(user.created_at).toLocaleDateString('ru-RU')}
-                    </small>
-                  </div>
-                  {currentUser?.id !== user.id && (
-                    <button 
-                      onClick={() => handleDeleteUser(user.id)}
-                      style={deleteButtonStyle}
-                    >
-                      Удалить
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Информация о безопасности */}
-        <div style={{
-          maxWidth: '500px',
-          margin: '40px auto',
-          padding: '20px',
-          background: 'rgba(8, 87, 47, 0.1)',
-          borderRadius: '10px',
-          textAlign: 'center'
-        }}>
-          <h3 style={{ color: '#08572f' }}>🛡️ Безопасность</h3>
-          <p>Пароли хранятся в отдельной таблице с хэшированием</p>
-          <ul style={{ textAlign: 'left', display: 'inline-block', margin: '10px 0' }}>
-            <li>Хэширование паролей</li>
-            <li>Использование "соли"</li>
-            <li>Отдельная таблица для учетных данных</li>
-            <li>Сессии через localStorage</li>
-          </ul>
-        </div>
+        
 
       </main>
       <footer className="footer">
