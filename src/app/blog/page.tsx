@@ -145,7 +145,7 @@ export default function BlogPage() {
         </Link>
         </div>
         <div className="header-right">
-          <UserInfo onNameChange={handleNameChange} />
+            <UserInfo onNameChange={handleNameChange} />
           
         </div>
       </header>

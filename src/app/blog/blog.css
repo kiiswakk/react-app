@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 20px;
 }
+
 .div{
   display: flex;
   gap: 20px;
@@ -259,7 +260,7 @@
 .post-tag {
   background: rgba(22, 8, 87, 0.1);
   color: #080f57;
-  border: 1px solid #08572f;
+  border: 1px solid #080d57;
   padding: 4px 10px;
   border-radius: 15px;
   font-size: 12px;
@@ -284,10 +285,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(8, 21, 87, 0.08);
+  border: 1px solid #39393a42;
   padding: 12px 20px;
-  border-radius: 25px;
-  border: 1px solid rgba(8, 87, 47, 0.2);
+  border-radius: 15px;
 }
 
 .user-status {
@@ -318,9 +318,9 @@
 .change-name-btn, .logout-btn {
   background: rgba(13, 8, 87, 0.1);
   color: #081957;
-  border: 1px solid rgba(8, 87, 47, 0.3);
+  border: none;
   padding: 6px 12px;
-  border-radius: 15px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 0.8em;
   transition: all 0.3s;

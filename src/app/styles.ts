@@ -102,7 +102,7 @@
     maxWidth: '500px',
     margin: '40px auto',
     padding: '30px',
-    backgroundColor: 'rgba(244, 249, 253, 0.9)',
+    backgroundColor: '#f8f9fa',
     borderRadius: '30px',
     boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
     };
